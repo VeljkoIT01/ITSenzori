@@ -1,0 +1,116 @@
+body {
+    background-color: #B9D3EE;
+    margin-left: 3cm;
+    margin-right: 3cm;
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    position: relative;
+    background-image: url('img/pozadina.jpg');
+    background-size: cover; /* Da bi se slika prilagodila veličini ekrana */
+    background-size: 100%;
+    background-position: center; /* Da bi se slika centrirala */
+}
+
+.header-container {
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5cm 1cm;
+    
+    width: 100%; 
+    z-index: 2;
+    font-family: sans-serif; /* Postavljanje sans-serif fonta */
+
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+.main-container {
+    background-color: white;
+    padding: 1cm;
+    margin-top: 0;
+    box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+    background-color: #EEEEEE;
+    color: black;
+    text-align: center;
+    padding: 0.5cm;
+    width: 100%; 
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.video-container iframe {
+    margin-left: 11.5cm;
+    position: absolute;
+
+    width: 70%;
+    height: 60%;
+}
+.btn.btn-secondary {
+    background-color: #50C878;
+    color: white; /* Da bi se tekst na dugmetu vidljivo */
+    border: none; /* Uklanja okvir dugmeta */
+}
+
+.btn.btn-secondary:hover {
+    background-color: #50C878; /* Promena boje na hover */
+}
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #50C878;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold; /* Boldiranje teksta */
+    font-family: sans-serif; /* Postavljanje sans-serif fonta */
+    z-index: 9999; /* Da bi bilo iznad ostalog sadržaja */
+}
+
+#scrollToTopBtn:hover {
+    background-color: #50C878;
+}
+
+.centered-and-resized {
+    display: block;
+    margin: 0 auto; /* centriranje slike */
+    max-width: 50%; /* postavljanje maksimalne širine slike */
+    height: auto; /* automatsko prilagođavanje visine */
+}
+
+
+.button-below-image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30px; /* Pomerajte dugme prema gore da biste postigli željeni položaj ispod slike */
+    background-color: #50C878;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button-below-image:hover {
+    background-color: #50C878;
+}
