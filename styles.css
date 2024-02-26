@@ -125,3 +125,19 @@ body {
     font-family: sans-serif;
     font-weight: bold;
 }
+.video-container {
+    position: relative;
+    margin: 0 auto; /* Centriranje horizontalno */
+    width: 80%;
+    height: 0;
+    padding-bottom: 28.28%; /* Omjer širine i visine za 16:9 video */
+}
+
+.video-container iframe {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto; /* Centriranje horizontalno */
+    width: 70%;
+    height: 60%;
+}
