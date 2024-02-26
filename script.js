@@ -248,3 +248,25 @@ function topFunction() {
   document.body.scrollTop = 0; 
   document.documentElement.scrollTop = 0; 
 }
+
+document.getElementById('downloadButton').addEventListener('click', function() {
+    let url = 'https://raw.githubusercontent.com/VeljkoIT01/ITSenzori/main/main.CSV';
+    let filename = 'JAKOVLJEVIC LIVE 22 JAN 2024.csv'; // Promijenio sam ekstenziju u malim slovima
+
+    fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+            // Stvaranje objekta za preuzimanje
+            let a = document.createElement('a');
+            a.href = window.URL.createObjectURL(blob);
+            a.download = filename;
+            a.style.display = 'none';
+            
+            // Dodavanje objekta na stranicu i emulacija klika
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(a.href);
+            document.body.removeChild(a);
+        })
+        .catch(error => console.error('Došlo je do greške:', error));
+});
