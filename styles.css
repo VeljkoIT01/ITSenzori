@@ -144,3 +144,33 @@ body {
     max-width: 560px; /* Maksimalna širina */
     max-height: 315px; /* Maksimalna visina */
 }
+.card {
+    background-size: cover;
+    background-position: center;
+}
+.card-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 50px; /* Dodajemo malo prostora ispod naslova */
+
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center; /* Centriramo sadržaj unutar kartice */
+
+}
+.btn {
+    font-size: 1.2rem; /* Prilagodite veličinu fonta po potrebi */
+    align-self: flex-end; /* Dugme će biti postavljeno na dno kartice */
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.card-body {
+    text-align: center; /* Centriramo sadržaj unutar kartice */
+}
+
