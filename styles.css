@@ -114,3 +114,14 @@ body {
 .button-below-image:hover {
     background-color: #50C878;
 }
+.centered-button {
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: #50C878;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
