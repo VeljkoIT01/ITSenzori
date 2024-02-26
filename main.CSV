@@ -1,5 +1,5 @@
 Time,Temperature,10 g X,Sound,Light,Pressure,Humidity,Comment
-, C, g, dBA, lx, kPa, %RH,
+ s, C, g, dBA, lx, kPa, %RH,
 0,13.3,-0.4,40.0,469,100.41,38.4,
 1,13.3,-0.5,63.2,498,100.40,38.4,
 2,13.3,-0.4,70.9,556,100.40,38.3,
