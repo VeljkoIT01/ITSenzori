@@ -1,79 +1,22 @@
-let chart;
-let availableColors = ['#D30000', '#1260CC', '#1FD665', '#FF007F', '#FFD700', '#FF6600'];
-let rawData;
-let itemsPerPage = 100;
-let totalPages = 0;
-let currentPage = 1;
-let headingArray = []; 
+let chart = document.getElementById('myChart');
 
 $(document).ready(function () {
     if ($('#myChart').html() === "") {
-        $.get('https://raw.githubusercontent.com/VeljkoIT01/ITSenzori/main/main.CSV', function (data) { dataToArrays(data); createChart(rawData); }, 'text');
+        $.get('https://raw.githubusercontent.com/VeljkoIT01/ITSenzori/main/main.CSV', function (data) { dataToArrays(data) }, 'text');
+
     }
 
     document.getElementById('csvFile').addEventListener('change', upload, false);
+
 });
 
 function dataToArrays(data) {
-    rawData = Papa.parse(data);
-    totalPages = Math.ceil(rawData.data.length / itemsPerPage);
-    updatePagination();
-    displayCurrentPageData();
-}
-
-function updatePagination() {
-    let paginationElement = document.getElementById('pagination');
-    let paginationHTML = '';
-
-    for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" onclick="changePage(${i})">${i}</a></li>`;
-    }
-
-    paginationElement.innerHTML = paginationHTML;
-}
-
-function changePage(pageNumber) {
-    currentPage = pageNumber;
-    displayCurrentPageData();
-}
-
-function displayCurrentPageData() {
-    let startIndex = (currentPage - 1) * itemsPerPage;
-    let endIndex = Math.min(startIndex + itemsPerPage, rawData.data.length);
-    let currentPageData = rawData.data.slice(startIndex, endIndex);
-
-    updatePagination();
-    displayDataInTable(currentPageData);
+    let rawData = Papa.parse(data);
+   
+    createChart(rawData);
 }
 
 
-
-function displayDataInTable(data) {
-    // Prikazi paginaciju iznad tabele "Current data"
-    updatePagination();
-
-    let html = '<table class="table"><tbody>';
-    data.forEach(element => {
-        if (element.some(function (el) { return el !== null; })) {
-            html += '<tr>';
-            element.forEach(element => {
-                html += '<td>' + (element !== null ? element : '') + '</td>';
-            });
-            html += '</tr>';
-        }
-    });
-    html += '</tbody></table>';
-    $('#parsedData').html(html);
-}
-
-function getColor() {
-    if (availableColors.length > 0) {
-        return availableColors.shift();
-    } else {
-        console.log("Nema više dostupnih boja.");
-        return '#000000';
-    }
-}
 
 function createChart(parsedData) {
     let dataArray = parsedData.data;
@@ -87,8 +30,7 @@ function createChart(parsedData) {
         headingArray.push({
             title: dataArray[0][i],
             unit: dataArray[1][i],
-            hidden: false,
-        });
+        })
     }
 
     for (let i = 0; i < dataArray.length; i++) {
@@ -122,14 +64,24 @@ function createChart(parsedData) {
             html += '</tr>';
         }
     });
-    html += '</tbody></table>';
+    html += '</tbody></table>'
     $('#parsedData').html(html);
 
-    Chart.defaults.global.defaultFontFamily = 'Consolas';
-    Chart.defaults.global.defaultFontSize = 18;
+    console.log(parsedData);
+    console.log(dataMatrix);
+    console.log(headingArray);
+
+    /* Global chart options */
+
+    Chart.defaults.global.defaultFontFamily = 'sans-serif';
+    Chart.defaults.global.defaultFontSize = 15;
     Chart.defaults.global.defaultFontColor = 'black';
 
     Chart.defaults.global.elements.line.backgroundColor = 'transparent';
+
+    /* /Global chart options */
+
+    /* Data */
 
     let labels = dataMatrix[0];
     labels.splice(0, 3);
@@ -138,22 +90,24 @@ function createChart(parsedData) {
 
     for (let i = 1; i < dataMatrix.length; i++) {
         let label = dataMatrix[i][0];
-
-        if (!headingArray[i].hidden) { 
         let datasetData = dataMatrix[i];
         datasetData.splice(0, 3);
-
+    
+        let color = getColor()[i - 1]; // Odaberite boju iz niza boja na osnovu indeksa
         datasets.push({
             label: label,
             data: datasetData,
-
-            borderColor: getColor(),
+    
+            borderColor:color,
             borderWidth: '1.5',
-
+            backgroundColor: color,
             pointRadius: 0,
+            fill:false,
         });
     }
-}
+    
+
+    /* /Data */
 
     let myChart = document.getElementById('myChart').getContext('2d');
     let type = 'line';
@@ -164,30 +118,14 @@ function createChart(parsedData) {
     let options = {
         title: {
             display: true,
-            text: ['Rezultati merenja na dan 22.01.2024.', ''],
-            fontFamily: "sans-serif",
-            fontSize: 26,
+            text: ['Rezultati merenja'],
+            fontSize: 23,
         },
         legend: {
             position: 'bottom',
             labels: {
                 fontColor: 'black',
-                fontFamily: "sans-serif",
             }
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    fontFamily: "sans-serif",
-                    fontSize: 14,
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    fontFamily: "sans-serif",
-                    fontSize: 14,
-                }
-            }]
         },
         tooltips: {
             intersect: false,
@@ -197,24 +135,26 @@ function createChart(parsedData) {
                 },
                 label: (toolTipItem) => {
                     return toolTipItem.yLabel + " " + headingArray[toolTipItem.datasetIndex + 1].unit;
+
                 },
             },
-            titleFontSize: 16,
-            bodyFontSize: 16,
         },
     };
-
-    if (chart) {
-        chart.destroy();
-    }
-
-    myChart.canvas.style.width = '80%';
-    myChart.canvas.style.height = '430px';
 
     chart = new Chart(myChart, { type, data, options });
 }
 
+function getColor() {
+    const colors = ['#D30000', '#1260CC', '#1FD665', '#FF007F', '#FFD700', '#FF6600'];
+    return colors;
+}
+
+
 function upload(evt) {
+    if (chart != null) {
+        chart.destroy();
+    }
+
     let data = null;
     let file = evt.target.files[0];
     let reader = new FileReader();
@@ -233,7 +173,6 @@ function upload(evt) {
         console.log('Unable to read ' + file.fileName);
     };
 }
-
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
