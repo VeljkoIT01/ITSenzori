@@ -99,7 +99,7 @@ function createChart(parsedData) {
             data: datasetData,
     
             borderColor:color,
-            borderWidth: '1.5',
+            borderWidth: '1',
             backgroundColor: color,
             pointRadius: 0,
             fill:false,
