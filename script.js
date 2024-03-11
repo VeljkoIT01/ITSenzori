@@ -125,6 +125,8 @@ function createChart(parsedData) {
             position: 'bottom',
             labels: {
                 fontColor: 'black',
+                fontSize: 20,
+
             }
         },
         tooltips: {
