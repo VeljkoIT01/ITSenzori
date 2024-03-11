@@ -174,3 +174,14 @@ body {
     text-align: center; /* Centriramo sadržaj unutar kartice */
 }
 
+.upload {
+    
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: #50C878;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
