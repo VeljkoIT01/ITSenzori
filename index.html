@@ -61,9 +61,7 @@ Ukratko, senzorski sistemi su ključni tehnološki elemenat modernog društva, �
             <div class="col text-center" style="font-family: sans-serif;">
                 
                 <div style="margin-top: 10px;"> <!-- Dodajemo razmak iznad drugog paragrafa -->
-                    <p align="justify" style="margin-left: 0.5cm; margin-right: 0.5cm; font-size: large;font-family: sans-serif;" ><b>
-                        Tokom merenja koristio se Data logger za zabeležavanje različitih vrednosti, uključujući Temperaturu, Gravitacionu silu, Zvuk, Svetlost, Pritisak  i Vlažnost vazduha.</b>
-                    </p>
+                    
                     <div class="image-container">
                         <img src="img/data.jpg" alt="EasySense" class="centered">
                         <button class="button-below-image" onclick="window.location.href='https://store.data-harvest.co.uk/easysense';">Idi na link od EasySens-a</button>
@@ -73,11 +71,25 @@ Ukratko, senzorski sistemi su ključni tehnološki elemenat modernog društva, �
         </div>
         
         <div class="container-fluid" style="padding-top: 60px;">
-           
+            <p align="justify" style="margin-left: 0.5cm; margin-right: 0.5cm; font-size: large;font-family: sans-serif;" ><b>
+                Tokom merenja koristio se Data logger za zabeležavanje različitih vrednosti, uključujući Temperaturu, Gravitacionu silu, Zvuk, Svetlost, Pritisak  i Vlažnost vazduha.</b>
+            </p>
+            <div class="container-fluid">
+                <div>
+                    <form>
+                        <div class="form-group mt-2">
+                            <input type="file" class="form-control-file" id="csvFile" accept=".csv">
+                            <label class="upload" for="csvFile">Upload-ujte vaš CSV fajl</label>
+
+                        </div>
+                    </form>
+                </div>
         <!-- Prikaz dijagrama -->
         <div class="row">
             <div class="col-sm-12"><canvas id="myChart"></canvas></div>
         </div>
+
+    
 
 
 
@@ -90,17 +102,14 @@ Ukratko, senzorski sistemi su ključni tehnološki elemenat modernog društva, �
             
         <button id="downloadButton" class="centered-button">Preuzmi CSV fajl u Excel formatu : 27.3 KB</button>
         
-            <div class="row">
-                <div class="col col-sm-12">
-                    <nav aria-label="Data pagination">
-                        <ul class="pagination justify-content-center mt-3" id="pagination"></ul>
-                    </nav>
-                </div>
-            </div>
+            
         
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col col-sm-12">
-                    <div id="parsedData"></div>
+                    <div class="pl-5">
+                     
+                        <div id="parsedData"></div>
+                    </div>
                 </div>
             </div>
         </div>
