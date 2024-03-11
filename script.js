@@ -148,7 +148,7 @@ function createChart(parsedData) {
             data: datasetData,
 
             borderColor: getColor(),
-            borderWidth: '1',
+            borderWidth: '2',
 
             pointRadius: 0,
         });
